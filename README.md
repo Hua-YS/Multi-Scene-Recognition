@@ -9,4 +9,4 @@ We collect 100k high-resolution aerial images with the size of 256x256. All of t
 
 # 
 
-<img src="./data_example.png" width = "640" height = "380" alt="example" align=center />
+<img src="./figures/illustration.jpg" width = "380" height = "380" alt="illustration" align=left />
