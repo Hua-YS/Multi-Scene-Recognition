@@ -14,7 +14,7 @@ MultiScene dataset aims at two tasks: 1) developing algorithms for multi-scene r
 
 We collect 100k high-resolution aerial images with the size of 512x512 around the world. All of them are assigned with crowdsourced labels provided by [OpenStreetMap](https://www.openstreetmap.org/) (OSM), and 14k of them are mannually inspected yielding clean labels. In total, 36 scene categories are defined in our dataset, and 22 models are tested. 
 
-
+<img src="./figures/data_distribution.jpg" width = "1000" height = "405" alt="example" align=center />
 
 
 
