@@ -1,6 +1,6 @@
 # Multi-Scene-Recognition \[[webpage]()\]\[[paper](https://arxiv.org/pdf/2104.02846.pdf)\]
 
-Multi-scene recognition is a challenging task. Compared to conventional scene classification (cf. (a)), images studied in multi-scene recognition are
+Multi-scene recognition is a challenging task due to that
 
 + images are large-scale and unconstrained
 + all present scenes in an aerial image need to be exhaustively recognized
