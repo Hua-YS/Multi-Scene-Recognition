@@ -19,17 +19,5 @@ We collect 100k high-resolution aerial images with the size of 512x512 around th
 In total, 36 scene categories are defined in our dataset, and 22 models are tested. 
 <img src="./figures/data_statistic.jpg" width = "990" height = "350" alt="example" align=center />
 
-## Quick Start
-1) install dependencies in ```requirements.txt```
 
-
-## Citation
-If you find they are useful, please kindly cite the following:
-```
-@article{hua2021multiscene,
-  title={MultiScene: A Large-scale Dataset and Benchmark for Multi-scene Recognition in Single Aerial Images},
-  author={Hua, Yuansheng and Mou, Lichao and Jin, Pu and Zhu, Xiao Xiang},
-  year={arXiv:2104.02846}
-}
-```
 
