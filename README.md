@@ -1,4 +1,4 @@
-# Multi-Scene-Recognition \[[webpage](https://multiscene.github.io/)\]\[[paper](https://arxiv.org/pdf/2104.02846.pdf)\]
+# Multi-Scene-Recognition \[[paper](https://arxiv.org/pdf/2104.02846.pdf)\]
 Multi-scene recognition is a challenging task due to that
 
 + images are large-scale and unconstrained
