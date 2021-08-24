@@ -1,4 +1,4 @@
-# Multi-Scene-Recognition \[[web](https://multiscene.github.io/))\]
+# Multi-Scene-Recognition \[[web](https://multiscene.github.io/)\]
 
 ## Task
 Multi-scene recognition is a challenging task due to that
