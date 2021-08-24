@@ -2,6 +2,7 @@
 Modified from ML-GCN/engine.py:
 * adding result visualization: OP, OR, OF1, CP, CR, CF1, EP, ER, EF1
 * adding result saving: results and weights are saved in results.txt
+* simplifying codes
 """
 
 import os
@@ -177,11 +178,9 @@ class Engine(object):
             if os.path.isfile(self.state['resume']):
                 print("=> loading checkpoint '{}'".format(self.state['resume']))
                 checkpoint = torch.load(self.state['resume'])
-                self.state['start_epoch'] = checkpoint['epoch']
-                self.state['best_score'] = checkpoint['best_score']
                 model.load_state_dict(checkpoint['state_dict'], strict=True)
-                print("=> loaded checkpoint '{}' (epoch {})"
-                      .format(self.state['evaluate'], checkpoint['epoch']))
+                print("=> loaded checkpoint '{}' "
+                      .format(self.state['evaluate']))
             else:
                 print("=> no checkpoint found at '{}'".format(self.state['resume']))
 
@@ -190,16 +189,13 @@ class Engine(object):
             train_loader.pin_memory = True
             val_loader.pin_memory = True
             cudnn.benchmark = True
-
-
             model = torch.nn.DataParallel(model, device_ids=self.state['device_ids']).cuda()
-
-
             criterion = criterion.cuda()
 
         if self.state['evaluate']:
             self.validate(val_loader, model, criterion)
             return
+
         print('start training')
         # TODO define optimizer
         prec1 = 0
@@ -218,10 +214,8 @@ class Engine(object):
             is_best = prec1 > self.state['best_score']
             self.state['best_score'] = max(prec1, self.state['best_score'])
             self.save_checkpoint({
-                'epoch': epoch + 1,
                 'arch': self._state('arch'),
                 'state_dict': model.module.state_dict() if self.state['use_gpu'] else model.state_dict(),
-                'best_score': self.state['best_score'],
             }, is_best)
 
             print(' *** best={best:.3f}'.format(best=self.state['best_score']))
@@ -316,14 +310,13 @@ class Engine(object):
             if self._state('save_model_path') is not None:
                 if self._state('filename_previous_best') is not None:
                     os.remove(self._state('filename_previous_best'))
-                filename_best = os.path.join(self.state['save_model_path'], 'model_best_{score:.4f}.pth.tar'.format(score=state['best_score']))
+                filename_best = os.path.join(self.state['save_model_path'], 'model_best_{score:.4f}.pth.tar'.format(score=self.state['best_score']))
                 shutil.copyfile(filename, filename_best)
                 self.state['filename_previous_best'] = filename_best
 
     def adjust_learning_rate(self, optimizer):
         """Sets the learning rate to the initial LR decayed by 10 every 30 epochs"""
         lr_list = []
-        #print self.state['epoch'] == np.array(self.state['epoch_step'])
         decay = 0.1 if np.mod((self.state['epoch']+1), np.array(self.state['epoch_step'])) == 0 else 1.0
         for param_group in optimizer.param_groups:
             param_group['lr'] = param_group['lr'] * decay
