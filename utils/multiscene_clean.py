@@ -67,7 +67,7 @@ from skimage.feature import hog, local_binary_pattern
 
 def MultiSceneClean_sklearn(set):
     path_dataset = os.path.join(ROOT, 'MultiScene-Clean')
-    path_feat = os.path.join(ROOT, 'MultiScene-Clean', 'feat'+set+'_clean.npy')
+    path_feat = os.path.join(ROOT, 'MultiScene-Clean', 'feat'+set+'.npy')
     file_csv = os.path.join(path_dataset, set+'.csv')
     y = torch.stack(read_object_labels_csv(file_csv, True)).numpy()
 
